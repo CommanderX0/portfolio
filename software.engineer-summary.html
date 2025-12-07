@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Roadmap</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --accent-color: #eee313;
+            --border-color: #333333;
+            --hover-bg: #2d2d2d;
+            --section-bg: #252526;
+            --link-color: #64b5f6;
+            --beginner-color: #4CAF50;
+            --intermediate-color: #2196F3;
+            --advanced-color: #9C27B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .main-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: block;
+            margin: 0 auto 10px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aaaaaa;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid;
+        }
+
+        .beginner {
+            border-left-color: #eee313;
+        }
+
+        .intermediate {
+            border-left-color: #eee313;
+        }
+
+        .advanced {
+            border-left-color: #eee313;
+        }
+
+        .section h2 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topic {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .topic h3 {
+            color: #ECEFF1;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+
+
+        .topic p {
+            color: #cccccc;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .resources {
+            margin-top: 15px;
+        }
+
+        .resource {
+            color: var(--link-color);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            padding: 5px 10px;
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .resource:hover {
+            background-color: rgba(64, 64, 64, 0.7);
+            text-decoration: underline;
+        }
+
+        .expand-btn {
+            background-color: #333333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .expand-btn:hover {
+            background-color: #444444;
+        }
+
+        .resources {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .resources.expanded {
+            max-height: 1000px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+
+        /* Full Roadmap Link */
+        .full-roadmap-link {
+            display: block;
+            text-align: center;
+            margin: 40px auto;
+            padding: 15px 25px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            max-width: 300px;
+            transition: background-color 0.3s;
+        }
+
+        .full-roadmap-link:hover {
+            background-color: var(--hover-bg);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-link {
+                text-align: center;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .full-roadmap-link {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="main-header">
+            <a href="index.html" class="back-link">← Back to Main Menu</a>
+            <h1>Software Engineering Roadmap</h1>
+            <p class="subtitle">Complete guide to learning software engineering from beginner to advanced</p>
+        </div>
+
+        <!-- Programming Fundamentals -->
+        <div class="section beginner">
+            <h2>Programming Fundamentals</h2>
+            
+            <div class="topic">
+                <h3>Introduction to Programming</h3>
+                <p>Learn basic programming concepts like variables, data types, control structures, functions, and simple algorithms.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.freecodecamp.org/learn" class="resource" target="_blank">FreeCodeCamp - Learn to Code for Free</a>
+                    <a href="https://www.codecademy.com/learn/learn-how-to-code" class="resource" target="_blank">Codecademy - Introduction to Programming</a>
+                    <a href="https://www.coursera.org/learn/programming-fundamentals" class="resource" target="_blank">Coursera - Programming Fundamentals</a>
+                    <a href="https://www.khanacademy.org/computing/computer-programming" class="resource" target="_blank">Khan Academy - Computer Programming</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Data Structures</h3>
+                <p>Learn fundamental data structures like arrays, lists, stacks, queues, trees, and maps.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.geeksforgeeks.org/data-structures/" class="resource" target="_blank">GeeksforGeeks - Data Structures</a>
+                    <a href="https://www.programiz.com/dsa" class="resource" target="_blank">Programiz - Data Structures and Algorithms</a>
+                    <a href="https://visualgo.net/en" class="resource" target="_blank">VisuAlgo - Data Structures and Algorithms Visualization</a>
+                    <a href="https://www.coursera.org/learn/data-structures" class="resource" target="_blank">Coursera - Data Structures</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Algorithms</h3>
+                <p>Study fundamental algorithms for searching, sorting, and analyze time and space complexity.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.khanacademy.org/computing/computer-science/algorithms" class="resource" target="_blank">Khan Academy - Algorithms</a>
+                    <a href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/" class="resource" target="_blank">GeeksforGeeks - Fundamentals of Algorithms</a>
+                    <a href="https://www.udacity.com/course/intro-to-algorithms--cs215" class="resource" target="_blank">Udacity - Introduction to Algorithms</a>
+                    <a href="https://www.coursera.org/specializations/algorithms" class="resource" target="_blank">Coursera - Algorithms Specialization</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Version Control Systems (Git)</h3>
+                <p>Learn Git for source code management, collaboration with developers, and tracking project changes.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://git-scm.com/doc" class="resource" target="_blank">Official Git Documentation</a>
+                    <a href="https://www.atlassian.com/git/tutorials" class="resource" target="_blank">Atlassian - Git Tutorials</a>
+                    <a href="https://www.freecodecamp.org/news/git-and-github-for-beginners/" class="resource" target="_blank">FreeCodeCamp - Git and GitHub for Beginners</a>
+                    <a href="https://www.udacity.com/course/version-control-with-git--ud123" class="resource" target="_blank">Udacity - Version Control with Git</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Software Development -->
+        <div class="section intermediate">
+            <h2>Software Development</h2>
+            
+            <div class="topic">
+                <h3>Databases and Data Modeling</h3>
+                <p>Learn SQL and NoSQL databases, database design, and advanced queries.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.w3schools.com/sql/" class="resource" target="_blank">W3Schools - Learn SQL</a>
+                    <a href="https://www.mongodb.com/docs/manual/tutorial/getting-started/" class="resource" target="_blank">MongoDB - Getting Started</a>
+                    <a href="https://www.udemy.com/course/sql-and-database-design/" class="resource" target="_blank">Udemy - SQL and Database Design</a>
+                    <a href="https://www.coursera.org/learn/database-management" class="resource" target="_blank">Coursera - Database Management</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>APIs (Application Programming Interfaces)</h3>
+                <p>Learn to design and build APIs, RESTful APIs, GraphQL, and API documentation.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://restfulapi.net/" class="resource" target="_blank">REST API Tutorial</a>
+                    <a href="https://graphql.org/learn/" class="resource" target="_blank">GraphQL - Learn</a>
+                    <a href="https://www.freecodecamp.org/news/apis-for-beginners/" class="resource" target="_blank">FreeCodeCamp - APIs for Beginners</a>
+                    <a href="https://www.udacity.com/course/designing-restful-apis--ud388" class="resource" target="_blank">Udacity - Designing RESTful APIs</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Software Engineering Principles and Design</h3>
+                <p>Study SOLID principles, design patterns, and software architecture.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.geeksforgeeks.org/solid-principle-in-programming-understand-with-real-life-examples/" class="resource" target="_blank">GeeksforGeeks - SOLID Principles</a>
+                    <a href="https://refactoring.guru/design-patterns" class="resource" target="_blank">Refactoring Guru - Design Patterns</a>
+                    <a href="https://www.coursera.org/learn/software-design-methods" class="resource" target="_blank">Coursera - Software Design Methods</a>
+                    <a href="https://www.udemy.com/course/design-patterns-java/" class="resource" target="_blank">Udemy - Design Patterns</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Software Testing</h3>
+                <p>Learn unit testing, integration testing, functional testing, and Test-Driven Development (TDD).</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://jestjs.io/docs/getting-started" class="resource" target="_blank">Jest - Getting Started</a>
+                    <a href="https://junit.org/junit5/docs/current/user-guide/" class="resource" target="_blank">JUnit 5 User Guide</a>
+                    <a href="https://www.guru99.com/software-testing.html" class="resource" target="_blank">Guru99 - Software Testing</a>
+                    <a href="https://www.coursera.org/learn/software-testing" class="resource" target="_blank">Coursera - Software Testing</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Level -->
+        <div class="section advanced">
+            <h2>Advanced Level</h2>
+            
+            <div class="topic">
+                <h3>Distributed Systems and Infrastructure</h3>
+                <p>Study distributed systems, cloud computing, containers, and microservices applications.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://aws.amazon.com/what-is-cloud-computing/" class="resource" target="_blank">AWS - What is Cloud Computing</a>
+                    <a href="https://kubernetes.io/docs/tutorials/" class="resource" target="_blank">Kubernetes - Tutorials</a>
+                    <a href="https://www.docker.com/resources/what-container/" class="resource" target="_blank">Docker - What is a Container</a>
+                    <a href="https://www.coursera.org/learn/cloud-computing" class="resource" target="_blank">Coursera - Cloud Computing</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Software Security</h3>
+                <p>Learn application security fundamentals, common vulnerabilities, and protection methods.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://owasp.org/www-project-top-ten/" class="resource" target="_blank">OWASP Top 10</a>
+                    <a href="https://www.hacksplaining.com/lesson" class="resource" target="_blank">Hacksplaining - Security Lessons</a>
+                    <a href="https://www.coursera.org/learn/software-security" class="resource" target="_blank">Coursera - Software Security</a>
+                    <a href="https://www.edx.org/course/computer-security" class="resource" target="_blank">edX - Computer Security</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>DevOps and CI/CD</h3>
+                <p>Learn DevOps practices, continuous integration, continuous deployment, and automation.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.jenkins.io/doc/" class="resource" target="_blank">Jenkins - Documentation</a>
+                    <a href="https://docs.gitlab.com/ee/ci/" class="resource" target="_blank">GitLab CI/CD</a>
+                    <a href="https://www.redhat.com/en/topics/devops" class="resource" target="_blank">Red Hat - What is DevOps</a>
+                    <a href="https://www.coursera.org/learn/introduction-to-devops" class="resource" target="_blank">Coursera - Introduction to DevOps</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Advanced Architecture</h3>
+                <p>Study large-scale systems, performance analysis, and scalability optimization.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.edx.org/course/software-architecture-design" class="resource" target="_blank">edX - Software Architecture and Design</a>
+                    <a href="https://www.coursera.org/specializations/software-design-architecture" class="resource" target="_blank">Coursera - Software Design and Architecture</a>
+                    <a href="https://www.infoq.com/architecture-design/" class="resource" target="_blank">InfoQ - Architecture and Design</a>
+                    <a href="https://martinfowler.com/architecture/" class="resource" target="_blank">Martin Fowler - Architecture</a>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+    </div>
+
+    <!-- Full Roadmap Link -->
+    <a href="softwareengineering.html" class="full-roadmap-link" target="_blank">Full Roadmap Version</a>
+
+    <script>
+        // Toggle resource visibility
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const resources = button.nextElementSibling;
+                resources.classList.toggle('expanded');
+                
+                if (resources.classList.contains('expanded')) {
+                    button.textContent = 'Hide Resources';
+                } else {
+                    button.textContent = 'Show Resources';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

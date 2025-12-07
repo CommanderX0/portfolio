@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Developer Roadmap</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --accent-color: #eee313;
+            --border-color: #333333;
+            --hover-bg: #2d2d2d;
+            --section-bg: #252526;
+            --link-color: #64b5f6;
+            --beginner-color: #4CAF50;
+            --intermediate-color: #2196F3;
+            --advanced-color: #9C27B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .main-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: block;
+            margin: 0 auto 10px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aaaaaa;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid;
+        }
+
+        .beginner {
+            border-left-color: #eee313;
+        }
+
+        .intermediate {
+            border-left-color: #eee313;
+        }
+
+        .advanced {
+            border-left-color: #eee313;
+        }
+
+        .section h2 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topic {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .topic h3 {
+            color: #ECEFF1;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+
+
+        .topic p {
+            color: #cccccc;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .resources {
+            margin-top: 15px;
+        }
+
+        .resource {
+            color: var(--link-color);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            padding: 5px 10px;
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .resource:hover {
+            background-color: rgba(64, 64, 64, 0.7);
+            text-decoration: underline;
+        }
+
+        .expand-btn {
+            background-color: #333333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .expand-btn:hover {
+            background-color: #444444;
+        }
+
+        .resources {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .resources.expanded {
+            max-height: 1000px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+
+        /* Full Roadmap Link */
+        .full-roadmap-link {
+            display: block;
+            text-align: center;
+            margin: 40px auto;
+            padding: 15px 25px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            max-width: 300px;
+            transition: background-color 0.3s;
+        }
+
+        .full-roadmap-link:hover {
+            background-color: var(--hover-bg);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-link {
+                text-align: center;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .full-roadmap-link {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="main-header">
+            <a href="index.html" class="back-link">← Back to Main Menu</a>
+            <h1>Backend Developer Roadmap</h1>
+            <p class="subtitle">Complete guide to learning backend development from beginner to advanced</p>
+        </div>
+
+        <!-- Basic Level -->
+        <div class="section beginner">
+            <h2>Basic Level</h2>
+            
+            <div class="topic">
+                <h3>Programming Language (Node.js, Python, Java, etc.)</h3>
+                <p>Choose a programming language for backend development such as Node.js (JavaScript), Python (Django/Flask), Java (Spring), PHP, Ruby, Go, etc.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://nodejs.org/en/docs/" class="resource" target="_blank">Node.js Documentation</a>
+                    <a href="https://docs.python.org/" class="resource" target="_blank">Python Documentation</a>
+                    <a href="https://spring.io/projects/spring-framework" class="resource" target="_blank">Spring Framework</a>
+                    <a href="https://go.dev/doc/" class="resource" target="_blank">Go Documentation</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>HTTP & REST APIs</h3>
+                <p>Understanding HTTP protocol concepts, GET/POST/PUT/DELETE requests, designing and building RESTful APIs.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP" class="resource" target="_blank">MDN HTTP Guide</a>
+                    <a href="https://restfulapi.net/" class="resource" target="_blank">REST API Tutorial</a>
+                    <a href="https://www.freecodecamp.org/news/rest-api/" class="resource" target="_blank">FreeCodeCamp - REST APIs</a>
+                    <a href="https://www.coursera.org/learn/apis" class="resource" target="_blank">Coursera - APIs</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Git & GitHub</h3>
+                <p>Git is a version control system for tracking changes in source code. GitHub is a platform for hosting repositories and collaborating on projects.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://git-scm.com/doc" class="resource" target="_blank">Official Git Documentation</a>
+                    <a href="https://docs.github.com/en" class="resource" target="_blank">GitHub Docs</a>
+                    <a href="https://www.atlassian.com/git/tutorials" class="resource" target="_blank">Atlassian - Git Tutorials</a>
+                    <a href="https://www.udacity.com/course/version-control-with-git--ud123" class="resource" target="_blank">Udacity - Version Control with Git</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Databases (SQL & NoSQL)</h3>
+                <p>Understanding database systems like SQL (MySQL, PostgreSQL) and NoSQL (MongoDB, Redis) and how to interact with them.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.mysql.com/" class="resource" target="_blank">MySQL Documentation</a>
+                    <a href="https://www.postgresql.org/docs/" class="resource" target="_blank">PostgreSQL Docs</a>
+                    <a href="https://www.mongodb.com/docs/" class="resource" target="_blank">MongoDB Docs</a>
+                    <a href="https://www.w3schools.com/sql/" class="resource" target="_blank">W3Schools - Learn SQL</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beyond Basic Section -->
+        <div class="section intermediate">
+            <h2>Beyond Basic</h2>
+            
+            <div class="topic">
+                <h3>Authentication & Authorization</h3>
+                <p>Systems to protect resources and determine who can access which features, such as JWT, OAuth, Session-based Auth.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://auth0.com/docs" class="resource" target="_blank">Auth0 Documentation</a>
+                    <a href="https://jwt.io/introduction" class="resource" target="_blank">JWT Introduction</a>
+                    <a href="https://oauth.net/2/" class="resource" target="_blank">OAuth 2.0</a>
+                    <a href="https://www.freecodecamp.org/news/authentication-vs-authorization/" class="resource" target="_blank">FreeCodeCamp - Authentication vs Authorization</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Server Architecture (Monolith, Microservices)</h3>
+                <p>Understanding server architecture patterns like Monolith and Microservices and when to use each.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://microservices.io/" class="resource" target="_blank">Microservices Guide</a>
+                    <a href="https://martinfowler.com/articles/distributed-objects-microservices.html" class="resource" target="_blank">Martin Fowler on Microservices</a>
+                    <a href="https://www.nginx.com/blog/microservices-at-netflix-architectural-best-practices/" class="resource" target="_blank">NGINX - Microservices Best Practices</a>
+                    <a href="https://www.coursera.org/learn/uva-darden-microservices" class="resource" target="_blank">Coursera - Microservices</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Message Queues (RabbitMQ, Kafka)</h3>
+                <p>Systems for transferring messages between services reliably, important in distributed systems.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.rabbitmq.com/documentation.html" class="resource" target="_blank">RabbitMQ Docs</a>
+                    <a href="https://kafka.apache.org/documentation/" class="resource" target="_blank">Apache Kafka Docs</a>
+                    <a href="https://www.cloudamqp.com/blog/part1-rabbitmq-for-beginners-what-is-rabbitmq.html" class="resource" target="_blank">RabbitMQ for Beginners</a>
+                    <a href="https://www.udemy.com/course/apache-kafka/" class="resource" target="_blank">Udemy - Apache Kafka</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Caching (Redis, Memcached)</h3>
+                <p>Using caching techniques to improve application performance and reduce database load.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://redis.io/documentation" class="resource" target="_blank">Redis Documentation</a>
+                    <a href="https://memcached.org/documentation" class="resource" target="_blank">Memcached Docs</a>
+                    <a href="https://redis.com/redis-enterprise/technology/redis-caching/" class="resource" target="_blank">Redis Caching Guide</a>
+                    <a href="https://www.freecodecamp.org/news/caching-explained/" class="resource" target="_blank">FreeCodeCamp - Caching Explained</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Level -->
+        <div class="section advanced">
+            <h2>Advanced Level</h2>
+            
+            <div class="topic">
+                <h3>DevOps & CI/CD</h3>
+                <p>Integrating software development with operations using tools like Docker, Kubernetes, Jenkins, GitHub Actions.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://docs.docker.com/" class="resource" target="_blank">Docker Documentation</a>
+                    <a href="https://kubernetes.io/docs/home/" class="resource" target="_blank">Kubernetes Docs</a>
+                    <a href="https://docs.github.com/en/actions" class="resource" target="_blank">GitHub Actions</a>
+                    <a href="https://www.jenkins.io/doc/" class="resource" target="_blank">Jenkins Documentation</a>
+                    <a href="https://www.coursera.org/learn/devops" class="resource" target="_blank">Coursera - DevOps</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>System Design</h3>
+                <p>Principles of designing scalable, secure, distributed systems, including concepts, patterns, and techniques.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://github.com/donnemartin/system-design-primer" class="resource" target="_blank">System Design Primer</a>
+                    <a href="https://www.hiredintech.com/system-design" class="resource" target="_blank">HiredInTech System Design</a>
+                    <a href="https://www.educative.io/courses/grokking-the-system-design-interview" class="resource" target="_blank">Grokking System Design</a>
+                    <a href="https://www.udacity.com/course/system-design-interview-prep--ud288" class="resource" target="_blank">Udacity - System Design Interview</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Security (OWASP, JWT, etc.)</h3>
+                <p>Principles and techniques to protect your application from common web vulnerabilities and attacks.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://owasp.org/www-project-top-ten/" class="resource" target="_blank">OWASP Top 10</a>
+                    <a href="https://cheatsheetseries.owasp.org/" class="resource" target="_blank">OWASP Cheatsheets</a>
+                    <a href="https://www.sans.org/top-cyber-security-risks/" class="resource" target="_blank">SANS Top Security Risks</a>
+                    <a href="https://www.coursera.org/learn/software-security" class="resource" target="_blank">Coursera - Software Security</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Performance & Monitoring</h3>
+                <p>Techniques to improve server performance and monitor system health and metrics.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.elastic.co/observability" class="resource" target="_blank">Elastic Observability</a>
+                    <a href="https://prometheus.io/docs/introduction/overview/" class="resource" target="_blank">Prometheus Docs</a>
+                    <a href="https://grafana.com/docs/grafana/latest/" class="resource" target="_blank">Grafana Documentation</a>
+                    <a href="https://www.datadoghq.com/" class="resource" target="_blank">Datadog Monitoring</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Roadmap Link -->
+    <a href="backend.html" class="full-roadmap-link" target="_blank">Full Roadmap Version</a>
+
+    <script>
+        // Toggle resource visibility
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const resources = button.nextElementSibling;
+                resources.classList.toggle('expanded');
+                
+                if (resources.classList.contains('expanded')) {
+                    button.textContent = 'Hide Resources';
+                } else {
+                    button.textContent = 'Show Resources';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

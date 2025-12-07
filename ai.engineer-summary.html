@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engineer Roadmap</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --accent-color: #eee313;
+            --border-color: #333333;
+            --hover-bg: #2d2d2d;
+            --section-bg: #252526;
+            --link-color: #64b5f6;
+            --beginner-color: #4CAF50;
+            --intermediate-color: #2196F3;
+            --advanced-color: #9C27B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .main-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: block;
+            margin: 0 auto 10px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aaaaaa;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background-color: var(--section-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid;
+        }
+
+        .beginner {
+            border-left-color: #eee313;
+        }
+
+        .intermediate {
+            border-left-color: #eee313;
+        }
+
+        .advanced {
+            border-left-color: #eee313;
+        }
+
+        .section h2 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topic {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .topic h3 {
+            color: #ECEFF1;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+
+
+        .topic p {
+            color: #cccccc;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .resources {
+            margin-top: 15px;
+        }
+
+        .resource {
+            color: var(--link-color);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            padding: 5px 10px;
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .resource:hover {
+            background-color: rgba(64, 64, 64, 0.7);
+            text-decoration: underline;
+        }
+
+        .expand-btn {
+            background-color: #333333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .expand-btn:hover {
+            background-color: #444444;
+        }
+
+        .resources {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .resources.expanded {
+            max-height: 1000px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+
+        /* Full Roadmap Link */
+        .full-roadmap-link {
+            display: block;
+            text-align: center;
+            margin: 40px auto;
+            padding: 15px 25px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            max-width: 300px;
+            transition: background-color 0.3s;
+        }
+
+        .full-roadmap-link:hover {
+            background-color: var(--hover-bg);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-link {
+                text-align: center;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .full-roadmap-link {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="main-header">
+            <a href="index.html" class="back-link">← Back to Main Menu</a>
+            <h1>AI Engineer Roadmap</h1>
+            <p class="subtitle">Complete guide to learning artificial intelligence engineering from beginner to advanced</p>
+        </div>
+
+        <!-- Basic Level -->
+        <div class="section beginner">
+            <h2>Basic Level</h2>
+            
+            <div class="topic">
+                <h3>Mathematics for AI</h3>
+                <p>Essential mathematics like linear algebra, calculus, statistics, probability required to understand AI algorithms.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.khanacademy.org/math/linear-algebra" class="resource" target="_blank">Linear Algebra - Khan Academy</a>
+                    <a href="https://www.khanacademy.org/math/statistics-probability" class="resource" target="_blank">Statistics & Probability</a>
+                    <a href="https://www.coursera.org/learn/mathematics-for-machine-learning" class="resource" target="_blank">Coursera - Mathematics for Machine Learning</a>
+                    <a href="https://www.edx.org/course/linear-algebra-foundations-to-frontiers" class="resource" target="_blank">edX - Linear Algebra</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Programming (Python)</h3>
+                <p>Python is the primary language for AI development, with libraries like NumPy, Pandas, Matplotlib.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.python.org/about/gettingstarted/" class="resource" target="_blank">Python Getting Started</a>
+                    <a href="https://numpy.org/doc/stable/user/quickstart.html" class="resource" target="_blank">NumPy Quickstart</a>
+                    <a href="https://pandas.pydata.org/docs/user_guide/10min.html" class="resource" target="_blank">Pandas 10 Minutes Guide</a>
+                    <a href="https://www.coursera.org/specializations/python" class="resource" target="_blank">Coursera - Python for Everybody</a>
+                    <a href="https://matplotlib.org/stable/tutorials/index.html" class="resource" target="_blank">Matplotlib Tutorials</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Machine Learning Fundamentals</h3>
+                <p>Introduction to ML concepts like supervised/unsupervised learning, evaluation, etc.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.coursera.org/learn/machine-learning" class="resource" target="_blank">ML Course by Andrew Ng</a>
+                    <a href="https://scikit-learn.org/stable/getting_started.html" class="resource" target="_blank">Scikit-learn Guide</a>
+                    <a href="https://www.kaggle.com/learn/intro-to-machine-learning" class="resource" target="_blank">Kaggle - Intro to Machine Learning</a>
+                    <a href="https://www.fast.ai/" class="resource" target="_blank">fast.ai - Practical Deep Learning</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Git & GitHub</h3>
+                <p>Git is a version control system for tracking changes in source code. GitHub is a platform for hosting repositories and collaborating on projects.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://git-scm.com/doc" class="resource" target="_blank">Official Git Documentation</a>
+                    <a href="https://docs.github.com/en" class="resource" target="_blank">GitHub Docs</a>
+                    <a href="https://www.atlassian.com/git/tutorials" class="resource" target="_blank">Atlassian - Git Tutorials</a>
+                    <a href="https://www.udacity.com/course/version-control-with-git--ud123" class="resource" target="_blank">Udacity - Version Control with Git</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beyond Basic Section -->
+        <div class="section intermediate">
+            <h2>Beyond Basic</h2>
+            
+            <div class="topic">
+                <h3>Deep Learning</h3>
+                <p>Introduction to deep neural networks, TensorFlow/PyTorch, etc.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.deeplearning.ai/" class="resource" target="_blank">Deep Learning Specialization</a>
+                    <a href="https://pytorch.org/tutorials/" class="resource" target="_blank">PyTorch Tutorials</a>
+                    <a href="https://www.tensorflow.org/tutorials" class="resource" target="_blank">TensorFlow Tutorials</a>
+                    <a href="https://www.fast.ai/" class="resource" target="_blank">fast.ai - Deep Learning for Coders</a>
+                    <a href="https://www.coursera.org/specializations/deep-learning" class="resource" target="_blank">Coursera - Deep Learning Specialization</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Natural Language Processing (NLP)</h3>
+                <p>A field of AI dealing with processing and understanding natural language.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://huggingface.co/course" class="resource" target="_blank">Hugging Face Course</a>
+                    <a href="https://www.nltk.org/" class="resource" target="_blank">NLTK Documentation</a>
+                    <a href="https://www.coursera.org/specializations/natural-language-processing" class="resource" target="_blank">Coursera - NLP Specialization</a>
+                    <a href="https://spacy.io/usage/spacy-101" class="resource" target="_blank">spaCy 101</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Computer Vision</h3>
+                <p>A field dealing with enabling computers to "see" and understand images/videos.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.coursera.org/specializations/convolutional-neural-networks" class="resource" target="_blank">CNN Specialization</a>
+                    <a href="https://opencv.org/" class="resource" target="_blank">OpenCV Documentation</a>
+                    <a href="https://www.coursera.org/learn/computer-vision-basics" class="resource" target="_blank">Coursera - Computer Vision Basics</a>
+                    <a href="https://www.kaggle.com/learn/computer-vision" class="resource" target="_blank">Kaggle - Computer Vision Course</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Data Preprocessing & Feature Engineering</h3>
+                <p>Essential steps to prepare data before feeding it to models.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://pandas.pydata.org/docs/user_guide/missing_data.html" class="resource" target="_blank">Pandas Missing Data</a>
+                    <a href="https://scikit-learn.org/stable/modules/preprocessing.html" class="resource" target="_blank">Scikit-learn Preprocessing</a>
+                    <a href="https://www.kaggle.com/learn/data-cleaning" class="resource" target="_blank">Kaggle - Data Cleaning</a>
+                    <a href="https://www.coursera.org/learn/data-preprocessing" class="resource" target="_blank">Coursera - Data Preprocessing</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Level -->
+        <div class="section advanced">
+            <h2>Advanced Level</h2>
+            
+            <div class="topic">
+                <h3>Generative AI (GPT, DALL-E, etc.)</h3>
+                <p>Models for generating content like text, images, audio, etc.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.deeplearning.ai/short-courses/" class="resource" target="_blank">Generative AI Short Courses</a>
+                    <a href="https://platform.openai.com/docs/introduction" class="resource" target="_blank">OpenAI Documentation</a>
+                    <a href="https://www.coursera.org/learn/generative-ai-with-llms" class="resource" target="_blank">Coursera - Generative AI with LLMs</a>
+                    <a href="https://huggingface.co/learn" class="resource" target="_blank">Hugging Face - Transformers Course</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>MLOps & Model Deployment</h3>
+                <p>Integrating ML with operations using tools like MLflow, Kubeflow, etc.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://mlflow.org/docs/latest/index.html" class="resource" target="_blank">MLflow Documentation</a>
+                    <a href="https://kubeflow.org/docs/" class="resource" target="_blank">Kubeflow Documentation</a>
+                    <a href="https://www.coursera.org/learn/introduction-to-mlops" class="resource" target="_blank">Coursera - Introduction to MLOps</a>
+                    <a href="https://www.udacity.com/course/machine-learning-dev-ops-engineer-nanodegree--nd0821" class="resource" target="_blank">Udacity - Machine Learning DevOps</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Ethics in AI</h3>
+                <p>Ethical principles in developing and deploying AI applications.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.deeplearning.ai/short-courses/ai-for-everyone/" class="resource" target="_blank">AI Ethics Short Course</a>
+                    <a href="https://www.partnershiponai.org/" class="resource" target="_blank">Partnership on AI</a>
+                    <a href="https://www.coursera.org/learn/ai-ethics" class="resource" target="_blank">Coursera - AI Ethics</a>
+                    <a href="https://www.edx.org/course/ethics-of-ai" class="resource" target="_blank">edX - Ethics of AI</a>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h3>Reinforcement Learning</h3>
+                <p>A type of ML where an agent learns by interacting with an environment.</p>
+                <button class="expand-btn">Show Resources</button>
+                <div class="resources">
+                    <a href="https://www.coursera.org/specializations/reinforcement-learning" class="resource" target="_blank">RL Specialization</a>
+                    <a href="https://gym.openai.com/" class="resource" target="_blank">OpenAI Gym</a>
+                    <a href="https://spinningup.openai.com/" class="resource" target="_blank">Spinning Up in Deep RL</a>
+                    <a href="https://www.udacity.com/course/reinforcement-learning--ud600" class="resource" target="_blank">Udacity - Reinforcement Learning</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Roadmap Link -->
+    <a href="aiengineer.html" class="full-roadmap-link" target="_blank">Full Roadmap Version</a>
+
+    <script>
+        // Toggle resource visibility
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const resources = button.nextElementSibling;
+                resources.classList.toggle('expanded');
+                
+                if (resources.classList.contains('expanded')) {
+                    button.textContent = 'Hide Resources';
+                } else {
+                    button.textContent = 'Show Resources';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
